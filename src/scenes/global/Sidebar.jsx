@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
+import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
@@ -14,12 +14,13 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
 import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
+  
   return (
     <MenuItem
       active={selected === title}
@@ -35,7 +36,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   );
 };
 
-const PSidebar = () => {
+const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -61,13 +62,7 @@ const PSidebar = () => {
         },
       }}
     >
-      <Sidebar 
-        collapsed={isCollapsed} 
-        menuItemStyles={{
-          backgroundColor: '#13395e',
-          color: '#b6c8d9'
-          }}
-      >
+      <ProSidebar collapsed={isCollapsed}>
         <Menu iconShape="square">
           {/* LOGO AND MENU ICON */}
           <MenuItem
@@ -86,7 +81,7 @@ const PSidebar = () => {
                 ml="15px"
               >
                 <Typography variant="h3" color={colors.grey[100]}>
-                  Sudo
+                  ADMINIS
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -113,21 +108,19 @@ const PSidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Satara
+                  Ed Roh
                 </Typography>
-                <Typography 
-                  variant="h5" 
-                  color={colors.greenAccent[500]}
-                >
-                  Tecnopolis
+                <Typography variant="h5" color={colors.greenAccent[500]}>
+                  VP Fancy Admin
                 </Typography>
               </Box>
             </Box>
           )}
+
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
               title="Dashboard"
-              to='/'
+              to="/"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -142,7 +135,7 @@ const PSidebar = () => {
             </Typography>
             <Item
               title="Manage Team"
-              to='/team'
+              to="/team"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -227,11 +220,11 @@ const PSidebar = () => {
               setSelected={setSelected}
             />
           </Box>
-          
+
         </Menu>
-      </Sidebar>
+      </ProSidebar>
     </Box>
   );
 };
 
-export default PSidebar
+export default Sidebar;
