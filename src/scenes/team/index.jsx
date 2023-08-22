@@ -71,7 +71,7 @@ function Team() {
 
   return (
     <Box m="20px">
-      <Header title="TEAM" subtitle="Managing the Team Members" />
+      <Header title="Equipo" subtitle="Administrador de Usuarios" />
       <Box
         m="40px 0 0 0"
         height="75vh"
